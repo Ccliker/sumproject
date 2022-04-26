@@ -1,0 +1,41 @@
+#include "statusMessage.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+void statusMessage::parseMessage()
+{
+	//std::cout << "________________parseMessage ____________:	" << "\n";
+
+	if (!this->messageBuffer)
+		return;
+	//this->messageBuffer = (unsigned char*)realloc(messageBuffer, sizeof(char*) * 3);
+	std::memcpy(this->messageBuffer,&(this->messageType),  2);
+	std::memcpy(this->messageBuffer + 2 ,&(this->status), 1);
+	//std::cout << "________________parseMessage ____________:	" << this->messageBuffer << "\n";
+	
+	/*for (int i = 0;i < 3;i++) {
+		std::cout << " , " << messageBuffer[i];
+		
+	}
+	std::cout << "parseMessage:	" << this->messageBuffer << "\n";*/
+}
+
+void statusMessage::parseBack()
+{
+	this->messageBuffer = (unsigned char*)malloc(3);
+	std::memcpy(this->messageBuffer, &(this->messageType), 2);
+	std::memcpy(this->messageBuffer + 2, &(this->status), 1);
+	//std::cout << "parseMessage:	" << this->messageBuffer << "\n";
+}
+
+void statusMessage::print()
+{
+	std::cout << "inform about your messege:" << "\n";
+	std::cout << "Type:	" << this->messageType << "\t" << "Status:	" << this->status << "\n";
+}
+
+statusMessage::statusMessage(int messageId, int messageType, short status) :baseMessage(messageId, messageType)
+{
+	this->status = (status < 1 || status>3) ? 0 : status;
+}
