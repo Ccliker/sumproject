@@ -1,0 +1,7 @@
+{
+    "NumOfCamera": 4,
+    "NumOfMessageInSecond": 4,
+    "ip": "http://localhost",
+    "Port": "3300"
+
+}

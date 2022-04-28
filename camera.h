@@ -16,6 +16,7 @@ public:
 	baseMessage ** arrMessage;
 	buffer buffer;
 	int getIndex();
+	char getCameraId();
 	bool isActive;
 	void generate();
 	void sendToBuffer();

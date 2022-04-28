@@ -25,13 +25,14 @@ discoverMessage* createDiscoverMessage()
 }
 
 
-camera::camera(char id)
+camera::camera(char id )
 {
 	cameraId = id;
 	index = 0;
 	seconds = 10;
 	isActive = true;
 	arrMessage = NULL;
+
 }
 
 camera::camera()
@@ -42,7 +43,6 @@ camera::camera()
 void camera::generate()
 {
 	this->count= rand() % 5 + 1;
-	std::cout << "________count________\t"<<count<<std::endl;
 	while  (count > 0){
 	this->arrMessage = (baseMessage**)realloc(arrMessage, sizeof(baseMessage*) * (index + 1));
 	(rand() % 2 + 1 == 1) ? arrMessage[index++] = createStatusMessage () : arrMessage[index++] = createDiscoverMessage();
@@ -54,7 +54,6 @@ void camera::generate()
 
 camera::~camera()
 {
-	std::cout << "end\n";
 	free(arrMessage);
 }
 void camera::sendToBuffer()
@@ -68,6 +67,7 @@ void camera::sendToBuffer()
 		arrMessage[i]->print();*/
 		buffer.addToBuffer(arrMessage[i]->getMessageBuffer());
 	}
+	free(arrMessage);
 	arrMessage = NULL;
 	index = 0;
 }
@@ -75,6 +75,11 @@ void camera::sendToBuffer()
 int camera::getIndex()
 {
 	return this->index;
+}
+
+char camera::getCameraId()
+{
+	return this->cameraId;
 }
 
 
@@ -85,9 +90,8 @@ void camera::run()
 	while (isActive) {
 		std::cout <<"cameraId : "<<this->cameraId<<std::endl;
 		generate();
-		/*arrMessage[index - 1]->print();*/
+		arrMessage[index - 1]->print();
 		sendToBuffer();
-		
 		Sleep(1000);
 	}
 }
