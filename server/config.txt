@@ -1,0 +1,4 @@
+numOfCameras:4
+messageInSecond:4
+ip:"127.0.0.1"
+port:300

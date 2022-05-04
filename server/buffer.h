@@ -10,6 +10,6 @@ public:
 	unsigned char** getBuffer();
 	void cleanBuffer();
 	int getIndex();
-	//~buffer();
+	~buffer();
 };
 

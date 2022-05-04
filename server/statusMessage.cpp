@@ -20,8 +20,8 @@ void statusMessage::parseBack()
 
 void statusMessage::print()
 {
-	//std::cout << "inform about your messege:" << "\n";
-	//std::cout << "Type:	" << this->messageType << "\t" << "Status:	" << this->status << "\n";
+	std::cout << "inform about your messege:" << "\n";
+	std::cout << "Type:	" << this->messageType << "\t" << "Status:	" << this->status << "\n";
 }
 
 statusMessage::statusMessage(int messageId, int messageType, short status) :baseMessage(messageId, messageType)

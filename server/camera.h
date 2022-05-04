@@ -6,16 +6,20 @@ class camera
 private:
 	char cameraId;
 	int index;
-	int seconds;
 	int count;
-
+	
 public:
+	int messageInSecond;
+	int port;
+	const char* ip;
 	camera();
 	camera(char id);
-	//~camera();
+	~camera();
 	baseMessage ** arrMessage;
-	buffer buffer;
+	buffer b;
 	int getIndex();
+	int getmessageInSecond();
+	buffer getbuffervalue();
 	char getCameraId();
 	bool isActive;
 	void generate();
